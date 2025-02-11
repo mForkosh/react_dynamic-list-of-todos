@@ -46,6 +46,7 @@ export const TodoFilter: React.FC<Props> = ({
         {inputValue && (
           <button
             data-cy="clearSearchButton"
+            aria-label="Clear input button"
             type="button"
             className="delete"
             onClick={() => onInputValue('')}

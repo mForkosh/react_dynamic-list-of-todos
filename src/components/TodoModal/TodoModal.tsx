@@ -17,6 +17,9 @@ export const TodoModal: React.FC<Props> = ({ activeTodo, onCloseTodoCard }) => {
   useEffect(() => {
     getUser(activeTodo.userId)
       .then(res => setUser(res))
+      .catch(() => {
+        throw new Error('User not found');
+      })
       .finally(() => setLoadingUser(false));
   }, [activeTodo.userId]);
 
@@ -39,6 +42,7 @@ export const TodoModal: React.FC<Props> = ({ activeTodo, onCloseTodoCard }) => {
             {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <button
               type="button"
+              aria-label="Close todo card"
               className="delete"
               data-cy="modal-close"
               onClick={onCloseTodoCard}
@@ -63,7 +67,7 @@ export const TodoModal: React.FC<Props> = ({ activeTodo, onCloseTodoCard }) => {
 
               {' by '}
 
-              <a href="mailto:Sincere@april.biz">{user?.name}</a>
+              <a href={`mailto:${user?.email}`}>{user?.name}</a>
             </p>
           </div>
         </div>

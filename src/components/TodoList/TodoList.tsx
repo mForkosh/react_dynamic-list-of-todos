@@ -33,9 +33,9 @@ export const TodoList: React.FC<Props> = ({
           <tr
             key={todo.id}
             data-cy="todo"
-            className={
-              activeTodo?.id === todo.id ? 'has-background-info-light' : ''
-            }
+            className={classNames({
+              'has-background-info-light': activeTodo?.id === todo.id,
+            })}
           >
             <td className="is-vcentered">{todo.id}</td>
             <td className="is-vcentered">

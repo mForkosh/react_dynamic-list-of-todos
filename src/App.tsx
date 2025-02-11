@@ -45,6 +45,9 @@ export const App: React.FC = () => {
 
     getTodos()
       .then(res => setTodoList(res))
+      .catch(() => {
+        throw new Error('Failed to get a server response');
+      })
       .finally(() => setLoadingTodos(false));
   }, []);
 
@@ -66,7 +69,7 @@ export const App: React.FC = () => {
 
             <div className="block">
               {loadingTodos && <Loader />}
-              {todoList.length > 0 && (
+              {visibleTodos.length > 0 && (
                 <TodoList
                   todoList={visibleTodos}
                   activeTodo={activeTodo}
